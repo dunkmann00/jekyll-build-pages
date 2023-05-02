@@ -2,7 +2,7 @@
 
 if [ "local" = "$1" ]; then
   export JEKYLL_ENV=production
-  export PAGES_REPO_NWO=dunkmann00/jekyll-build-pages
+  export PAGES_REPO_NWO=dunkmann00/jekyll-v4-build-pages
   export JEKYLL_BUILD_REVISION=JEKYLL_BUILD_REVISION
 
   for dir in test_projects/*
