@@ -27,7 +27,7 @@ jobs:
         id: regex-match
         run: |
           action=$(<action.yml)
-          regex="jekyll-build-pages:(.*)'"
+          regex="jekyll-v4-build-pages:(.*)'"
 
           if [[ $action =~ $regex ]]
           then
