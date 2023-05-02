@@ -1,4 +1,4 @@
-# jekyll-build-pages
+# jekyll-v4-build-pages
 
 A simple GitHub Action for producing Jekyll build artifacts compatible with GitHub Pages.
 
@@ -29,8 +29,8 @@ In order to release a new version of this Action:
 The scripts and documentation in this project are released under the [MIT License](LICENSE).
 
 <!-- references -->
-[release-list]: https://github.com/actions/jekyll-build-pages/releases
+[release-list]: https://github.com/dunkmann00/jekyll-v4-build-pages/releases
 [draft-release]: .github/workflows/release.yml
 [release]: .github/workflows/release.yml
-[release-workflow-runs]: https://github.com/actions/deploy-pages/actions/workflows/release.yml
-[action.yml]: https://github.com/actions/jekyll-build-pages/blob/649f5d3c2b2462620c8945f034200e431ceddd29/action.yml#LL31C54-L31C60
+[release-workflow-runs]: https://github.com/dunkmann00/jekyll-v4-build-pages/actions/workflows/release.yml
+[action.yml]: https://github.com/dunkmann00/jekyll-v4-build-pages/blob/649f5d3c2b2462620c8945f034200e431ceddd29/action.yml#LL31C55-L31C61
