@@ -2,6 +2,10 @@
 
 A simple GitHub Action for producing Jekyll build artifacts compatible with GitHub Pages.
 
+**This action is not the official action used for GitHub Pages.** This is a fork of the original `jekyll-build-pages` that I have modified to support Jekyll v4. This action will work mostly the same as the original, with the main difference being it will build a Jekyll site with Jekyll v4.x. To see a list of the dependencies that this action uses, checkout out [georgeh2os.com/pages-gem/versions](https://www.georgeh2os.com/pages-gem/versions/).
+
+While you could use this action directly to build a Jekyll site with GitHub Actions, it would be easier to use [jekyll-v4-gh-pages](https://github.com/dunkmann00/jekyll-v4-gh-pages) if you are looking to build **and** deploy a Jekyll site with GitHub Actions.
+
 # Scope
 
 This is used along with [`actions/deploy-pages`](https://github.com/actions/deploy-pages) as part of the official support for building Pages with Actions (currently in public beta for public repositories).
