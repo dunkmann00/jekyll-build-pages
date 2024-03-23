@@ -11,7 +11,7 @@ set -o errexit
 SOURCE_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_SOURCE
 DESTINATION_DIRECTORY=${GITHUB_WORKSPACE}/$INPUT_DESTINATION
 PAGES_GEM_HOME=$BUNDLE_APP_CONFIG
-GITHUB_PAGES=$PAGES_GEM_HOME/bin/jekyll-v4-github-pages
+GITHUB_PAGES_BIN=$PAGES_GEM_HOME/bin/jekyll-v4-github-pages
 
 # Check if Gemfile's dependencies are satisfied or print a warning
 if test -e "$SOURCE_DIRECTORY/Gemfile" && ! bundle check --dry-run --gemfile "$SOURCE_DIRECTORY/Gemfile" >/dev/null 2>&1; then
@@ -23,6 +23,7 @@ export JEKYLL_ENV="production"
 export JEKYLL_GITHUB_TOKEN=$INPUT_TOKEN
 export PAGES_REPO_NWO=$GITHUB_REPOSITORY
 export JEKYLL_BUILD_REVISION=$INPUT_BUILD_REVISION
+export PAGES_API_URL=$GITHUB_API_URL
 
 # Set verbose flag
 if [ "$INPUT_VERBOSE" = 'true' ]; then
@@ -38,5 +39,22 @@ else
   FUTURE=''
 fi
 
-cd "$PAGES_GEM_HOME"
-$GITHUB_PAGES build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY"
+{ cd "$PAGES_GEM_HOME" || { echo "::error::pages gem not found"; exit 1; }; }
+
+# Run the command, capturing the output
+build_output="$($GITHUB_PAGES_BIN build "$VERBOSE" "$FUTURE" --source "$SOURCE_DIRECTORY" --destination "$DESTINATION_DIRECTORY")"
+
+# Capture the exit code
+exit_code=$?
+
+if [ $exit_code -ne 0 ]; then
+  # Remove the newlines from the build_output as annotation not support multiline
+  error=$(echo "$build_output" | tr '\n' ' ' | tr -s ' ')
+  echo "::error::$error"
+else
+  # Display the build_output directly
+  echo "$build_output"
+fi
+
+# Exit with the captured exit code
+exit $exit_code
